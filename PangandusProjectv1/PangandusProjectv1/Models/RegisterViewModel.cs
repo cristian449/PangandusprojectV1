@@ -9,9 +9,10 @@ namespace PangandusProjectv1.Models
         [Required]
         public string LastName { get; set; }
         [Required]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public string DateOfBirth { get; set; }
 
         [Required]

@@ -26,19 +26,32 @@ namespace PangandusProjectv1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    DateOfBirth = DateTime.Parse(model.DateOfBirth),
+                    PhoneNumber = model.PhoneNumber
+                };
+
                 var result = await _userManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
             }
-            return View(model);  }
+            return View(model);
+
+        }
 
 
         public IActionResult Login() => View();
