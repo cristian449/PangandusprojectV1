@@ -11,5 +11,8 @@ namespace PangandusProjectv1.Models
         public string LastName { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+
+        [DataType(DataType.Currency)]
+        public decimal AccountBalance { get; set; } = 0;
     }
 }

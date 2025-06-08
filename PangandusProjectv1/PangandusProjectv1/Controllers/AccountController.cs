@@ -7,6 +7,9 @@ namespace PangandusProjectv1.Controllers
     public class AccountController : Controller
     {
 
+        // groox78@gmail.com
+        // frd!A5
+
 
         private readonly UserManager<User> _userManager;
 
@@ -63,7 +66,7 @@ namespace PangandusProjectv1.Controllers
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Dashboard", "User");
 
                 ModelState.AddModelError("", "Invalid login attempt.");
             }

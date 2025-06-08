@@ -1,0 +1,48 @@
+﻿@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Account Dashboard";
+}
+
+<div>
+    <div>
+        <h1>Welcome back, <span class="highlight">@Model.FullName</span>!</h1>
+        <p>Member since @Model.MemberSince.ToString("MMMM yyyy")</p>
+    </div>
+
+    <div>
+        <div>
+            <i></i>
+            <h2>Your Balance</h2>
+        </div>
+        <div>
+            @Model.AccountBalance.ToString("C")
+        </div>
+        <div">
+            <a asp-controller="Transaction" asp-action="Transfer" class="action-btn transfer">
+                <i class="fas fa-exchange-alt"></i> Transfer
+            </a>
+            <a asp-controller="Transaction" asp-action="History" class="action-btn history">
+                <i class="fas fa-history"></i> History
+            </a>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <i></i>
+            <h3>Email</h3>
+            <p>@Model.Email</p>
+        </div>
+        <div>
+            <i></i>
+            <h3>Member Since</h3>
+            <p>@Model.MemberSince.ToShortDateString()</p>
+        </div>
+        <div>
+            <i></i>
+            <h3>Account Status</h3>
+            <p>Active</p>
+        </div>
+    </div>
+</div>
