@@ -24,7 +24,18 @@ namespace PangandusProjectv1.Data
                 entity.Property(u => u.LastName).HasMaxLength(50);
                 entity.Property(u => u.DateOfBirth).IsRequired();
             });
+
+            builder.Entity<IdentityRole<Guid>>().HasData(
+              new IdentityRole<Guid>
+              {
+                  Id = Guid.NewGuid(),
+                  Name = "Admin",
+                  NormalizedName = "ADMIN"
+              }
+          );
         }
+
+
     }
 }
 
