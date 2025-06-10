@@ -12,8 +12,8 @@ using PangandusProjectv1.Data;
 namespace PangandusProjectv1.Migrations
 {
     [DbContext(typeof(BankDbContext))]
-    [Migration("20250609185952_AdminMigration2")]
-    partial class AdminMigration2
+    [Migration("20250610103644_AdminMigration5")]
+    partial class AdminMigration5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace PangandusProjectv1.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ef4f3d80-6a3d-4689-994c-b4e2a8756c41"),
+                            Id = new Guid("a1b2c3d4-1234-5678-9012-345678901234"),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -164,6 +164,39 @@ namespace PangandusProjectv1.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PangandusProjectv1.Models.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
+                });
+
             modelBuilder.Entity("PangandusProjectv1.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -183,6 +216,9 @@ namespace PangandusProjectv1.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("DateJoined")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
@@ -200,6 +236,9 @@ namespace PangandusProjectv1.Migrations
 
                     b.Property<bool>("IsAdministrator")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastLoginDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
                         .IsRequired()

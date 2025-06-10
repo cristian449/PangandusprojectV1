@@ -15,7 +15,15 @@ namespace PangandusProjectv1.Models
         [DataType(DataType.Currency)]
         public decimal AccountBalance { get; set; } = 0;
 
+        //Admin properties
+
         public bool IsAdministrator { get; set; } = false;
         public DateTime? AdminSince { get; set; }
+
+
+        // Properites for AdminController 
+
+        public DateTime DateJoined { get; set; } = DateTime.Now;
+        public DateTime? LastLoginDate { get; set; }
     }
 }

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<User>
+@{
+    ViewData["Title"] = "User List";
+
+}
+
+<div class="container">
+
+    <h1>User Management</h1>
+
+
+    <p>List of all registered users</p>
+
+    <hr />
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Phone</th>
+
+                        <th>Joined</th>
+
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.FirstName @user.LastName</td>
+
+                            <td>@user.Email</td>
+
+                            <td>@user.PhoneNumber</td>
+
+                            <td>@user.DateJoined.ToString("d")</td>
+                            <td>
+                                @if (user.IsAdministrator)
+                                {
+                                    <span class="badge bg-primary">Admin</span>
+                                }
+
+
+                                else
+                                {
+                                    <span class="badge bg-success">User</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>

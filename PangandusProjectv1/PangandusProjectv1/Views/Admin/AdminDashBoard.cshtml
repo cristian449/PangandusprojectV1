@@ -1,0 +1,87 @@
+﻿@model AdminDashBoardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container">
+
+
+    <h1>Welcome, @Model.AdminName</h1>
+
+    <p>Administrator Dashboard</p>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <h2 class="card-text">@Model.TotalUsers</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Active Today</h5>
+                    <h2 class="card-text">@Model.ActiveUsersToday</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <h5 class="card-title">System Logs</h5>
+
+                    <h2 class="card-text">@Model.SystemLogsCount</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Recent Users</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Joined</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.RecentUsers)
+                    {
+
+                        <tr>
+                            <td>@user.FirstName @user.LastName</td>
+
+                            <td>@user.Email</td>
+
+                            <td>@user.DateJoined.ToString("d")</td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+
+        <a asp-action="UserList" class="btn btn-outline-primary">View All Users</a>
+        <div>
+            <button class="btn btn-secondary">System Logs</button>     
+            @*  At the moment this button as no value as the Log's funktion has not been made just asthethic  *@
+        </div>
+
+    </div>
+</div>

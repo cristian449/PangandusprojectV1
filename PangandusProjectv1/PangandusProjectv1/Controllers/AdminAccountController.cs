@@ -7,20 +7,28 @@ namespace PangandusProjectv1.Controllers
 {
     [AllowAnonymous]
 
-    //lookout@gmail.com
-    //Afg!2a
+
+    //For logging in as Admin
+    //Brooxsed@gmail.com
+    //fssd!A2
     //adminseceretkey4321
     public class AdminAccountController : Controller
     {
         private readonly UserManager<User> _userManager;
+
         private readonly SignInManager<User> _signInManager;
+
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
+
         private readonly IConfiguration _configuration;
 
         public AdminAccountController(
             UserManager<User> userManager,
+
             SignInManager<User> signInManager,
+
              RoleManager<IdentityRole<Guid>> roleManager,
+
             IConfiguration configuration)
         {
             _userManager = userManager;
@@ -72,6 +80,7 @@ namespace PangandusProjectv1.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
             }
+
             return View("~/Views/Admin/AdminRegister.cshtml", model);
         }
 
@@ -80,6 +89,7 @@ namespace PangandusProjectv1.Controllers
         {
             return View("~/Views/Admin/AdminLogin.cshtml");
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(AdminLoginViewModel model)
